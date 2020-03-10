@@ -26,14 +26,7 @@ namespace Client.Controllers
         {
             if (ModelState.IsValid)
             {
-               string s=Request.HttpContext.Request.Method;
-               PersonData personData = new PersonData();
-            using (var reader = new StreamReader(Request.Body))
-            { 
-                var body = reader.ReadToEnd();
-                string postStr=$"{s}&{body}";
-                socketClient.KlientPostGet(postStr);
-            }
+                GetRequest();
                 return RedirectToAction("Index");
             }
             else { 
@@ -43,19 +36,25 @@ namespace Client.Controllers
         [HttpGet]
         public JsonResult GetData()
         {
+            object obj = GetRequest();
+            return Json(obj);
+        }
+
+
+        private Object GetRequest()
+        {
             object obj;
             string s = Request.HttpContext.Request.Method;
             PersonData personData = new PersonData();
-            SocketClient sc = new SocketClient();
             using (var reader = new StreamReader(Request.Body))
             {
-
                 var body = reader.ReadToEnd();
                 string postStr = $"{s}&{body}";
                 obj=socketClient.KlientPostGet(postStr);
-            }    
-            return Json(obj);
+            }
+            return obj;
         }
+       
 
     }
 }
