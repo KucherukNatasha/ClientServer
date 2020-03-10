@@ -65,16 +65,18 @@ namespace Server
             // Запуск в работу
             server.Start();
             // Бесконечный цикл
-            while (true)
+            Task FreeInterf = Task.Run(() =>
             {
-                try
+                while (true)
                 {
-                    // Подключение клиента
-                    TcpClient client = server.AcceptTcpClient();
-                    NetworkStream stream = client.GetStream();
-                    // Обмен данными
                     try
                     {
+                        // Подключение клиента
+                        TcpClient client = server.AcceptTcpClient();
+                        NetworkStream stream = client.GetStream();
+                        // Обмен данными
+                        try
+                        {
                             if (stream.CanRead)
                             {
                                 byte[] myReadBuffer = new byte[100000];
@@ -83,33 +85,34 @@ namespace Server
                                 {
                                     int numberOfBytesRead = stream.Read(myReadBuffer, 0, myReadBuffer.Length);
                                     string requestVal = Encoding.UTF8.GetString(myReadBuffer, 0, numberOfBytesRead);
-                                    reqestArr = requestVal.Split('&');          
+                                    reqestArr = requestVal.Split('&');
                                 }
                                 while (stream.DataAvailable);
-                                   if (reqestArr[0] == "GET")
-                                   {
-                                      SelectData(stream,dataSet);
-                                   }
-                                  else
-                                   {
-                                      InsertData(reqestArr[1], reqestArr[2]);
-                                   }
+                                if (reqestArr[0] == "GET")
+                                {
+                                    SelectData(stream, dataSet);
+                                }
+                                else
+                                {
+                                    InsertData(reqestArr[1], reqestArr[2]);
+                                }
                             }
+                        }
+                        finally
+                        {
+                            stream.Close();
+                            client.Close();
+                        }
                     }
-                    finally
+                    catch
                     {
-                        stream.Close();
-                        client.Close();
+                        server.Stop();
+                        break;
                     }
-                }
-                catch
-                {
-                    server.Stop();
-                    break;
-                }
 
+                }
             }
-
+            );
           
          
         }
@@ -127,12 +130,10 @@ namespace Server
 
         void InsertData(string reqName, string reqPhone)
         {
-            string[] name;
-            string[] phone;
-            name = reqName.Split('=');
-            phone = reqPhone.Split('=');
+            string[] name= reqName.Split('=');
+            string[] phone= reqPhone.Split('=');
             ClassDataSet classDataSet = new ClassDataSet(myDatabase.databaseConnection);
-            classDataSet.PostDataSet($"INSERT INTO PERSONS_DATA VALUES({"'" + name[1] + "'"}, {phone[1]})");
+            classDataSet.PostDataSet($"INSERT INTO PERSONS_DATA VALUES ({"'" + name[1] + "'"}, {phone[1]})");
 
         }
 
