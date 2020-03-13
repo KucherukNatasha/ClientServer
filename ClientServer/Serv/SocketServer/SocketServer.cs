@@ -54,16 +54,16 @@ namespace Server
             string[] reqestArr;
             // Инициализация
             IPAddress localAddr = IPAddress.Parse("127.0.0.1");
-            TcpListener server = new TcpListener(localAddr, 1000);
+            TcpListener server = new TcpListener(localAddr, 1800);
             // Запуск в работу
             server.Start();
             // Бесконечный цикл
-            Task FreeInterf = Task.Run(() =>
+           Task FreeInterf = Task.Run(() =>
             {
                 while (true)
                 {
                     try
-                    {
+                    {    
                         // Подключение клиента
                         TcpClient client = server.AcceptTcpClient();
                         NetworkStream stream = client.GetStream();
@@ -72,7 +72,7 @@ namespace Server
                         {
                             if (stream.CanRead)
                             {
-                                byte[] myReadBuffer = new byte[100000];
+                                byte[] myReadBuffer = new byte[1000000];
                                 StringBuilder myCompleteMessage = new StringBuilder();
                                 do
                                 {
@@ -85,7 +85,7 @@ namespace Server
                                 {
                                     SelectData(stream);
                                 }
-                                else
+                                else 
                                 {
                                     InsertData(reqestArr[1], reqestArr[2]);
                                 }
@@ -127,8 +127,12 @@ namespace Server
         {
             string[] name= reqName.Split('=');
             string[] phone= reqPhone.Split('=');
+            //Проверка на пустой запрос. Если запрос пуст, слушаем дальше!!!
+            if(name[1]!=""&& phone[1] != "")
+            { 
             ClassDataSet classDataSet = new ClassDataSet(myDatabase.databaseConnection);
             classDataSet.PostDataSet($"INSERT INTO PERSONS_DATA VALUES ({"'" + name[1] + "'"}, {phone[1]})");
+            }
 
         }
 

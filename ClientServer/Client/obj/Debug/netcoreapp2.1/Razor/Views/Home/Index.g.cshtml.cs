@@ -61,7 +61,7 @@ using Client.Models;
             WriteLiteral("<br />\r\n");
             EndContext();
             BeginContext(61, 157, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "4405eb8749a946cb925b27cc6666c58b", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "c3340883746a44eab7a24476d3c45836", async() => {
                 BeginContext(84, 127, true);
                 WriteLiteral("\r\n    <div class=\"text-center\">\r\n        <button class=\"btn btn-primary\" type=\"submit\" > Send Data To DB</button>\r\n    </div>\r\n");
                 EndContext();
@@ -85,7 +85,7 @@ using Client.Models;
             WriteLiteral("\r\n<br />\r\n");
             EndContext();
             BeginContext(228, 173, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "cca0e203080d444dae2c33108119a0f2", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "74c2052477a04bc4b99d77815227f40d", async() => {
                 BeginContext(268, 126, true);
                 WriteLiteral("\r\n    <div class=\"text-center\">\r\n        <button class=\"btn btn-primary\" type=\"submit\">Get data from BD</button>\r\n    </div>\r\n");
                 EndContext();

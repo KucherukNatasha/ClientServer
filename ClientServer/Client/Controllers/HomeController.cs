@@ -22,8 +22,8 @@ namespace Client.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult PostData()
-        {
+        public ActionResult PostData ()
+        {   //То же касается запроса. Проверка модели здесь не будет работать. Мы работаем з данными запроса, а не модели!!! Оставляю для наглядности просто.
             if (ModelState.IsValid)
             {
                 GetRequest();

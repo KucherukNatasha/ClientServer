@@ -11,7 +11,7 @@ namespace Client.Models
         {
             Object obj;
             // Инициализация
-            TcpClient client = new TcpClient("127.0.0.1", 1000);
+            TcpClient client = new TcpClient("127.0.0.1", 1800);
             Byte[] data = Encoding.UTF8.GetBytes(request);
             NetworkStream stream = client.GetStream();
             try
@@ -19,7 +19,7 @@ namespace Client.Models
                 // Отправка сообщения
                 stream.Write(data, 0, data.Length);
                 // Получение ответа
-                Byte[] readingData = new Byte[100000];
+                Byte[] readingData = new Byte[1000000];
                 String responseData = String.Empty;
                 StringBuilder completeMessage = new StringBuilder();
                 int numberOfBytesRead = 0;

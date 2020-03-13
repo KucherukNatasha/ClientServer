@@ -25,9 +25,9 @@ namespace Serv
             SocketServer socketServ = new SocketServer();
             socketServ.ServerListen();
                 clickCount++;
-            }
-            else
-            {
+           }
+          else
+           {
                 return;
             }
           
