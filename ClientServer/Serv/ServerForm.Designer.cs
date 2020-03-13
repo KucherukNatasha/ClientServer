@@ -33,10 +33,6 @@
             this.tPort = new System.Windows.Forms.TextBox();
             this.lAddress = new System.Windows.Forms.Label();
             this.lPort = new System.Windows.Forms.Label();
-            this.dataSet = new System.Data.DataSet();
-            this.dataTable1 = new System.Data.DataTable();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
             this.SuspendLayout();
             // 
             // bConnect
@@ -85,16 +81,6 @@
             this.lPort.TabIndex = 4;
             this.lPort.Text = "Port";
             // 
-            // dataSet
-            // 
-            this.dataSet.DataSetName = "NewDataSet";
-            this.dataSet.Tables.AddRange(new System.Data.DataTable[] {
-            this.dataTable1});
-            // 
-            // dataTable1
-            // 
-            this.dataTable1.TableName = "PersonalData";
-            // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -109,8 +95,6 @@
             this.MinimizeBox = false;
             this.Name = "ServerForm";
             this.Text = "Server";
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -123,8 +107,6 @@
         private System.Windows.Forms.TextBox tPort;
         private System.Windows.Forms.Label lAddress;
         private System.Windows.Forms.Label lPort;
-        private System.Data.DataSet dataSet;
-        private System.Data.DataTable dataTable1;
     }
 }
 

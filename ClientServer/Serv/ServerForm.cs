@@ -13,15 +13,19 @@ namespace Serv
 {
     public partial class ServerForm : Form
     {
+        int clickCount = 0;
         public ServerForm()
         {
             InitializeComponent();
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {
+        {  
             SocketServer socketServ = new SocketServer();
-            socketServ.ServerListen(dataSet);
+            socketServ.ServerListen();
+                clickCount++;
+            
+          
         }
 
        

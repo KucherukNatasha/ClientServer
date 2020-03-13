@@ -26,8 +26,8 @@ namespace Client.Models
                 do
                 {
                   numberOfBytesRead = stream.Read(readingData, 0, readingData.Length);
-                  string res=Encoding.UTF8.GetString(readingData, 0, numberOfBytesRead);
-                  obj = (Object)JsonConvert.DeserializeObject(res); 
+                  string res = Encoding.UTF8.GetString(readingData, 0, numberOfBytesRead);
+                   obj=(Object)JsonConvert.DeserializeObject(res); 
                    
                 }
                     while (stream.DataAvailable);

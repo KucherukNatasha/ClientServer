@@ -49,7 +49,7 @@ namespace Server
             MessageBox.Show(strMess, "Помилка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        public void ServerListen(DataSet dataSet)
+        public void ServerListen()
         {
             string[] reqestArr;
             // Инициализация
@@ -83,7 +83,7 @@ namespace Server
                                 while (stream.DataAvailable);
                                 if (reqestArr[0] == "GET")
                                 {
-                                    SelectData(stream, dataSet);
+                                    SelectData(stream);
                                 }
                                 else
                                 {
@@ -106,11 +106,13 @@ namespace Server
                 }
             }
             );
-          
-         
+
+           
         }
-        void SelectData(NetworkStream stream, DataSet dataSet)
+        void SelectData(NetworkStream stream)
         {
+            DataSet dataSet = new DataSet();
+            dataSet.Tables.Add("PersonData");
             ClassDataSet classDataSet = new ClassDataSet(myDatabase.databaseConnection);
             classDataSet.FillDataSet(dataSet, 0, "Select * From PERSONS_DATA");
             string json = JsonConvert.SerializeObject(dataSet, Formatting.Indented);
