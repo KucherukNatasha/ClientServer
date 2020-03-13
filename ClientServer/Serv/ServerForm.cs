@@ -20,11 +20,16 @@ namespace Serv
         }
 
         private void button1_Click(object sender, EventArgs e)
-        {  
+        {   if(clickCount==0)
+            { 
             SocketServer socketServ = new SocketServer();
             socketServ.ServerListen();
                 clickCount++;
-            
+            }
+            else
+            {
+                return;
+            }
           
         }
 
